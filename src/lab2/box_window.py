@@ -46,11 +46,17 @@ class BoxWindow:
 
     def dimension(self):
         """[summary]"""
-        return
+
+        return len(self.bounds)
 
     def volume(self):
         """[summary]"""
-        return
+
+        volume = 1
+        for elt in bounds:
+            volume = volume * (np.abs(elt[1] - elt[0]))
+
+        return volume
 
     def indicator_function(self, point):
         """[summary]
@@ -80,3 +86,10 @@ class UnitBoxWindow(BoxWindow):
             center ([type], optional): [description]. Defaults to None.
         """
         super(BoxWindow, self).__init__(args)
+
+
+bounds = np.array([[0, 5], [-1, 3], [-10, 10]])
+test = BoxWindow(bounds)
+
+
+print(volume)
