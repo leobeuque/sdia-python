@@ -1,33 +1,32 @@
 def is_unique(x):
+    """[summary]
 
-    if len(x) == len(set(x)):
-        return True
-    else:
-        return False
+    Args:
+        x ([type]): [ouooui]
+
+    Returns:
+        [type]: [description]
+    """
+    L = []
+    verite = False
+    for elem in x:
+        verite = verite or (elem in L)
+        L.append(elem)
+    return not verite
+
+
+def is_unique_bis(x):
+    return len(set(x)) == len(x)
 
 
 def triangle_shape(height):
-    liste_print = []
-    if height == 0:
-        return ""
-    if height == 1:
-        return "x"
-    if height == 2:
-        return " x \nxxx"
-    else:
-        for i in range(height):
-            if i != height - 1:
-                liste_print.append(
-                    " " * (height - i - 1)
-                    + "x" * (2 * i + 1)
-                    + " " * (height - i - 1)
-                    + "\n"
-                )
-            else:
-                liste_print.append(
-                    " " * (height - i - 1) + "x" * (2 * i + 1) + " " * (height - i - 1)
-                )
-        return "".join(liste_print)
-
-
-triangle_shape(3)
+    triangle = ""
+    nbEspaces = height - 1
+    for indice in range(height):
+        triangle += nbEspaces * " "
+        triangle += "x" * (indice * 2 + 1)
+        triangle += nbEspaces * " "
+        if indice < (height - 1):
+            triangle += "\n"
+        nbEspaces += -1
+    return triangle

@@ -39,8 +39,10 @@ def box_2d_05():
         (np.array([10, 3]), False),
     ],
 )
-def test_indicator_function_box_2d(box_2d_05, point, expected):
+def test_indicator_function_box_2d(point, expected):
+    box_2d_05 = BoxWindow(np.array([[0, 5], [0, 5]]))
     is_in = box_2d_05.indicator_function(point)
+    # is_in = box_2d_05.__contains__(point)
     assert is_in == expected
 
 
