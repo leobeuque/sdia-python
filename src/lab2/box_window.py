@@ -45,10 +45,10 @@ class BoxWindow:
         Returns:
             [type]: [description]
         """
-        S = 0  # ! naming: S -> length for example
+        length = 0
         for segment in self.bounds:
-            S += segment[1] - segment[0]
-        return S
+            length += segment[1] - segment[0]
+        return length
 
     def __contains__(self, point):
 
