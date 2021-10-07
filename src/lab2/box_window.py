@@ -119,15 +119,4 @@ class UnitBoxWindow(BoxWindow):
             dimension ([type]): [description]
             center ([type], optional): [description]. Defaults to None.
         """
-<<<<<<< HEAD
-        super(UnitBoxWindow, self).__init__(args)
-=======
         super(BoxWindow, self).__init__(args)
-
-
-bounds = np.array([[0, 5], [-1, 3], [-10, 10]])
-test = BoxWindow(bounds)
-
-
-print(volume)
->>>>>>> 800186e6a26944578c7e9c700e593da165eba958

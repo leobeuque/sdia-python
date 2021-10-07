@@ -16,35 +16,23 @@ class BallWindow:
         self.center = np.array(center)
         self.radius = radius
 
-    def __len__(self):
-        """[Returns the sum of the lengths of the different bounds]
-
-        Returns:
-            [type]: [description]
-        """
-        length = 0
-        for segment in self.bounds:
-            length += segment[1] - segment[0]
-        return length
-
     def __contains__(self, point):
-
-        # * consider for (a, b), x in zip(self.bounds, point)
-        # * or exploit numpy vectorization power
 
         return np.linalg.norm(self.center - point) <= self.radius
 
     def dimension(self):
         """[Returns the mathematical dimension of the box]"""
-        # * nice use of .shape
-        return self.bounds.shape[0]
+        return len(self.center)
 
     def volume(self):
-        produit = 1  # ? naming: produit -> volume
-        for segment in self.bounds:
-            longueur = segment[1] - segment[0]
-            produit *= longueur
-        return produit
+        dim = self.dimension()
+        if dim == 1:
+            return 2 * self.radius
+        if dim == 2:
+            return np.pi * (self.radius ** 2)
+        if dim == 3:
+            return 4 / 3 * np.pi * (self.radius ** 3)
+        return "unimplemented volume"
 
     def indicator_function(self, point):
         """[returns True if the box contains the point]
@@ -85,5 +73,5 @@ class BallWindow:
         # ? why returning a list and not an np.array
 
 
-ball_2d_rad5_center1_1 = BallWindow((1, 1), 5)
-print(np.array([1, 1]) in ball_2d_rad5_center1_1)
+ball_2d_rad5_center1_1 = BallWindow((1, 1), 1)
+print(ball_2d_rad5_center1_1.volume())

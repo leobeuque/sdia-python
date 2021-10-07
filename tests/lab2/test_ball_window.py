@@ -10,11 +10,6 @@ def test_raise_type_error_when_something_is_called():
         raise TypeError()
 
 
-# @pytest.fixture
-# def box_2d_05():
-#     return BoxWindow(np.array([[0, 5], [0, 5]]))
-
-
 @pytest.mark.parametrize(
     "point, expected",
     [
@@ -28,6 +23,19 @@ def test_contains_function_ball_2d(point, expected):
     ball_2d_rad5_center1_1 = BallWindow((1, 1), 5)
     is_in = point in ball_2d_rad5_center1_1
     assert is_in == expected
+
+
+@pytest.mark.parametrize(
+    "center, expected",
+    [
+        (np.array([0]), 2),
+        (np.array([0, 0]), np.pi),
+        (np.array([0, 0, 0, 0]), "unimplemented volume"),
+    ],
+)
+def test_volume_boule_unite(center, expected):
+    ball_2d_rad5_center1_1 = BallWindow(center, 1)
+    assert ball_2d_rad5_center1_1.volume() == expected
 
 
 # def test_indicator_function_box_2d(point, expected):
