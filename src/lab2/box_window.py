@@ -131,12 +131,12 @@ class BoxWindow:
 
 
 # todo class UnitBoxWindow and BallWindow not defined
-# class UnitBoxWindow(BoxWindow):
-#    def __init__(self, center, dimension):
-#        """[summary]
+class UnitBoxWindow(BoxWindow):
+    def __init__(self, center, dimension):
+        """[summary]
 
-#        Args:
-#            dimension ([type]): [description]
-#            center ([type], optional): [description]. Defaults to None.
-#       """
-#        super(UnitBoxWindow, self).__init__(args)
+        Args:
+            dimension ([type]): [description]
+            center ([type], optional): [description]. Defaults to None.
+        """
+        super(BoxWindow, self).__init__(args)
