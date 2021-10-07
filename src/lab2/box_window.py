@@ -1,6 +1,6 @@
 import numpy as np
 
-from lab2.utils import get_random_number_generator
+# from lab2.utils import get_random_number_generator
 
 
 # todo write and clean up the docstrings [ ]
@@ -25,7 +25,7 @@ class BoxWindow:
         # ! use f-strings
         bounds_list = []
         if len(self.bounds.shape) == 1:
-            return "BoxWindow: " + str(self.bounds.tolist())
+            return "BoxWindow: " + f"{self.bounds.tolist()}"
 
         # * consider for i, (a, b) in enumerate(self.bounds)
         # * use += operator
@@ -33,9 +33,9 @@ class BoxWindow:
         to_print = ""
         for i in range(len(A_list)):
             if i != len(A_list) - 1:
-                to_print = to_print + str(A_list[i]) + " x "
+                to_print += f"{A_list[i]}" + " x "
             else:
-                to_print = to_print + str(A_list[i])
+                to_print += f"{A_list[i]}"
 
         return "BoxWindow: " + to_print
 
@@ -82,11 +82,11 @@ class BoxWindow:
         Returns:
             [float]: volume of the box
         """
-        produit = 1  # ? naming: produit -> volume
+        volume = 1  # ? naming: produit -> volume
         for segment in self.bounds:
             longueur = segment[1] - segment[0]
-            produit *= longueur
-        return produit
+            volume *= longueur
+        return volume
 
     def indicator_function(self, point):
         """Returns True if the box contains the point
@@ -125,18 +125,19 @@ class BoxWindow:
         """
         # * interesting way to decouple rand and rand_n
         # ? why passing a default n=1 argument if not calling self.rand when n=1
-        points_list = [self.rand(rng) for i in range(n)]
-        return points_list
+        return np.array(self.rand(rng) for i in range(n))
         # ? why returning a list and not an np.array
 
 
 # todo class UnitBoxWindow and BallWindow not defined
+
+
 class UnitBoxWindow(BoxWindow):
     def __init__(self, center, dimension):
-        """[summary]
+        """[Description] Create a box
 
         Args:
-            dimension ([type]): [description]
-            center ([type], optional): [description]. Defaults to None.
+            dimension ([int]): [description]
+            center ([tuple], optional): The center of the box with respect to the euclidian norm. Defaults to None.
         """
-        super(BoxWindow, self).__init__(args)
+        super(BoxWindow, self).__init__(bounds)
