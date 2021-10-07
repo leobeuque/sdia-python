@@ -6,13 +6,13 @@ from lab2.utils import get_random_number_generator
 # todo write and clean up the docstrings [ ]
 # todo write and run tests
 class BoxWindow:
-    """[Simple class describing a box]"""
+    """[Simple class describing a box] The box is defined by its bounds"""
 
     def __init__(self, bounds):
         """[initialization method]
 
         Args:
-            args ([type]): [giving bounds as a list of segments defining bounds in each dimension]
+            args ([numpy array]): giving bounds as a list of segments defining bounds in each dimension
         """
         self.bounds = np.array(bounds)
 
@@ -20,7 +20,7 @@ class BoxWindow:
         """BoxWindow: `[a_1, b_1] x [a_2, b_2] `
 
         Returns:
-            [type]: [description]
+            [str]: A description of the given box with its corresponding bounds
         """
         # ! use f-strings
         bounds_list = []
@@ -41,10 +41,10 @@ class BoxWindow:
 
     def __len__(self):
         """[summary]
-        [Returns the sum of the lengths of the different bounds]
+        Returns the sum of the lengths of the different bounds
 
         Returns:
-            [integer]: [Returns the sum of the lengths of the different bounds]
+            [int]: Returns the sum of the lengths of the different bounds
         """
         length = 0
         for segment in self.bounds:
@@ -52,13 +52,13 @@ class BoxWindow:
         return length
 
     def __contains__(self, point):
-        """[Returns True if the point passed as argument is in the box, False if it is outside the box]
+        """Test if the point passed as argument is in the box
 
         Args:
-            point ([type]): [description]
+            point ([tuple]): The point we want to test
 
         Returns:
-            [type]: [description]
+            [bool]: Return True if the point is in the box, False if it is outside the box
         """
         # * consider for (a, b), x in zip(self.bounds, point)
         # * or exploit numpy vectorization power
@@ -68,15 +68,19 @@ class BoxWindow:
         return True
 
     def dimension(self):
-        """[Returns the mathematical dimension of the box]"""
+        """Returns the mathematical dimension of the box
+
+        Returns:
+            [int]: Dimension of the box
+        """
         # * nice use of .shape
         return self.bounds.shape[0]
 
     def volume(self):
-        """[Returns the volume of the box with respect to the euclidian norm]
+        """Returns the volume of the box with respect to the euclidian norm
 
         Returns:
-            [type]: [description]
+            [float]: volume of the box
         """
         produit = 1  # ? naming: produit -> volume
         for segment in self.bounds:
@@ -85,10 +89,13 @@ class BoxWindow:
         return produit
 
     def indicator_function(self, point):
-        """[returns True if the box contains the point]
+        """Returns True if the box contains the point
 
         Args:
-            args ([type]): [the point must have the same dimension as the box]
+            args ([tuple]): the point must have the same dimension as the box
+
+        Returns:
+            [bool]: True or False regarding wether the point is in the box or not
         """
         # ? how would you handle multiple points
         # todo readability consider using "point in self"
@@ -99,7 +106,7 @@ class BoxWindow:
         """Generate a point uniformly at random inside the :py:class:`BoxWindow`.
 
         Args:
-            rng ([type], optional): [description]. Defaults to None.
+            rng ([int], optional): Seed. Defaults to None.
         """
         rng = get_random_number_generator(rng)
         number_list = []
@@ -113,8 +120,8 @@ class BoxWindow:
         """Generate ``n`` points uniformly at random inside the :py:class:`BoxWindow`.
 
         Args:
-            n (int, optional): [description]. Defaults to 1.
-            rng ([type], optional): [description]. Defaults to None.
+            n (int, optional): Number of points to generate. Defaults to 1.
+            rng ([int], optional): Seed. Defaults to None.
         """
         # * interesting way to decouple rand and rand_n
         # ? why passing a default n=1 argument if not calling self.rand when n=1
