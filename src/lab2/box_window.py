@@ -40,10 +40,11 @@ class BoxWindow:
         return "BoxWindow: " + to_print
 
     def __len__(self):
-        """[Returns the sum of the lengths of the different bounds]
+        """[summary]
+        [Returns the sum of the lengths of the different bounds]
 
         Returns:
-            [type]: [description]
+            [integer]: [Returns the sum of the lengths of the different bounds]
         """
         S = 0  # ! naming: S -> length for example
         for segment in self.bounds:
@@ -51,7 +52,14 @@ class BoxWindow:
         return S
 
     def __contains__(self, point):
+        """[Returns True if the point passed as argument is in the box, False if it is outside the box]
 
+        Args:
+            point ([type]): [description]
+
+        Returns:
+            [type]: [description]
+        """
         # * consider for (a, b), x in zip(self.bounds, point)
         # * or exploit numpy vectorization power
         for i in range(len(point)):
@@ -65,6 +73,11 @@ class BoxWindow:
         return self.bounds.shape[0]
 
     def volume(self):
+        """[Returns the volume of the box with respect to the euclidian norm]
+
+        Returns:
+            [type]: [description]
+        """
         produit = 1  # ? naming: produit -> volume
         for segment in self.bounds:
             longueur = segment[1] - segment[0]
@@ -120,10 +133,3 @@ class UnitBoxWindow(BoxWindow):
             center ([type], optional): [description]. Defaults to None.
         """
         super(BoxWindow, self).__init__(args)
-
-
-bounds = np.array([[0, 5], [-1, 3], [-10, 10]])
-test = BoxWindow(bounds)
-
-
-print(volume)
