@@ -3,48 +3,24 @@ import numpy as np
 from lab2.utils import get_random_number_generator
 
 
-# todo write and clean up the docstrings [ ]
-# todo write and run tests
-class BoxWindow:
-    """[Simple class describing a box]"""
+class BallWindow:
+    """Simple class describing a ball"""
 
-    def __init__(self, bounds):
-        """[initialization method]
+    def __init__(self, center, radius):
+        """initialization method
 
         Args:
-            args ([type]): [giving bounds as a list of segments defining bounds in each dimension]
+            center ([type]): [description]
+            radius ([type]): [description]
         """
-        self.bounds = np.array(bounds)
+        self.center = np.array(center)
+        self.radius = radius
 
-    def __str__(self):
-        """BoxWindow: `[a_1, b_1] x [a_2, b_2] `
+    def __len__(self):
+        """[Returns the sum of the lengths of the different bounds]
 
         Returns:
             [type]: [description]
-        """
-        # ! use f-strings
-        bounds_list = []
-        if len(self.bounds.shape) == 1:
-            return "BoxWindow: " + str(self.bounds.tolist())
-
-        # * consider for i, (a, b) in enumerate(self.bounds)
-        # * use += operator
-        A_list = self.bounds.tolist()
-        to_print = ""
-        for i in range(len(A_list)):
-            if i != len(A_list) - 1:
-                to_print = to_print + str(A_list[i]) + " x "
-            else:
-                to_print = to_print + str(A_list[i])
-
-        return "BoxWindow: " + to_print
-
-    def __len__(self):
-        """[summary]
-        [Returns the sum of the lengths of the different bounds]
-
-        Returns:
-            [integer]: [Returns the sum of the lengths of the different bounds]
         """
         length = 0
         for segment in self.bounds:
@@ -52,20 +28,11 @@ class BoxWindow:
         return length
 
     def __contains__(self, point):
-        """[Returns True if the point passed as argument is in the box, False if it is outside the box]
 
-        Args:
-            point ([type]): [description]
-
-        Returns:
-            [type]: [description]
-        """
         # * consider for (a, b), x in zip(self.bounds, point)
         # * or exploit numpy vectorization power
-        for i in range(len(point)):
-            if not (self.bounds[i][0] <= point[i] <= self.bounds[i][1]):
-                return False
-        return True
+
+        return np.linalg.norm(self.center - point) <= self.radius
 
     def dimension(self):
         """[Returns the mathematical dimension of the box]"""
@@ -73,11 +40,6 @@ class BoxWindow:
         return self.bounds.shape[0]
 
     def volume(self):
-        """[Returns the volume of the box with respect to the euclidian norm]
-
-        Returns:
-            [type]: [description]
-        """
         produit = 1  # ? naming: produit -> volume
         for segment in self.bounds:
             longueur = segment[1] - segment[0]
@@ -123,13 +85,5 @@ class BoxWindow:
         # ? why returning a list and not an np.array
 
 
-# todo class UnitBoxWindow and BallWindow not defined
-# class UnitBoxWindow(BoxWindow):
-#    def __init__(self, center, dimension):
-#        """[summary]
-
-#        Args:
-#            dimension ([type]): [description]
-#            center ([type], optional): [description]. Defaults to None.
-#       """
-#        super(UnitBoxWindow, self).__init__(args)
+ball_2d_rad5_center1_1 = BallWindow((1, 1), 5)
+print(np.array([1, 1]) in ball_2d_rad5_center1_1)

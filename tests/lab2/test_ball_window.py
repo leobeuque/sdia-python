@@ -1,0 +1,42 @@
+import numpy as np
+import pytest
+
+from lab2.ball_window import BallWindow
+
+
+def test_raise_type_error_when_something_is_called():
+    with pytest.raises(TypeError):
+        # call_something_that_raises_TypeError()
+        raise TypeError()
+
+
+# @pytest.fixture
+# def box_2d_05():
+#     return BoxWindow(np.array([[0, 5], [0, 5]]))
+
+
+@pytest.mark.parametrize(
+    "point, expected",
+    [
+        (np.array([1, 1]), True),
+        (np.array([4, 5]), True),
+        (np.array([4, 6]), False),
+        (np.array([10, 3]), False),
+    ],
+)
+def test_contains_function_ball_2d(point, expected):
+    ball_2d_rad5_center1_1 = BallWindow((1, 1), 5)
+    is_in = point in ball_2d_rad5_center1_1
+    assert is_in == expected
+
+
+# def test_indicator_function_box_2d(point, expected):
+#     box_2d_05 = BoxWindow(np.array([[0, 5], [0, 5]]))
+#     is_in = box_2d_05.indicator_function(point)
+#     # is_in = box_2d_05.__contains__(point)
+#     assert is_in == expected
+
+
+# ================================
+# ==== WRITE YOUR TESTS BELOW ====
+# ================================
