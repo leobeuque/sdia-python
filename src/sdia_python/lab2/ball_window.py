@@ -38,3 +38,44 @@ class BallWindow:
         if dim == 3:
             return 4 / 3 * np.pi * (self.radius ** 3)
         return "unimplemented volume"
+
+    def indicator_function(self, points):
+
+        # ? how would you handle multiple points
+        # todo readability consider using "point in self"
+        if len(points.shape) == 1:
+            return points in self
+        else:
+            verite_array = np.apply_along_axis(lambda x: x in self, 1, points)
+            return np.all(verite_array)
+
+    # def rand(self, rng=None):
+    #     """Generate a point uniformly at random inside the :py:class:`BoxWindow`.
+
+    #     Args:
+    #         rng ([int], optional): Seed. Defaults to None.
+    #     """
+    #     rng = get_random_number_generator(rng)
+    #     number_list = []
+    #     # * exploit numpy, rng.uniform(a, b, size=n)
+    #     # * consider for a, b in self.bounds
+    #     for bound in self.bounds:
+    #         number_list.append(rng.uniform(bound[0], bound[1]))
+    #     return np.array(number_list)
+
+    # def rand_n(self, n=1, rng=None):
+    #     """Generate ``n`` points uniformly at random inside the :py:class:`BoxWindow`.
+
+    #     Args:
+    #         n (int, optional): Number of points to generate. Defaults to 1.
+    #         rng ([int], optional): Seed. Defaults to None.
+    #     """
+    #     # * interesting way to decouple rand and rand_n
+    #     # ? why passing a default n=1 argument if not calling self.rand when n=1
+    #     return np.array(self.rand(rng) for i in range(n))
+    #     # ? why returning a list and not an np.array
+
+
+# ball_2d_rad5_center1_1 = BallWindow((1, 1), 5)
+# print((lambda x: x ** 2)(5))
+# print(ball_2d_rad5_center1_1.indicator_function(np.array([[4, 5], [1, 0], [1, 0]])))

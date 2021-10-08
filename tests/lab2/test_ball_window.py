@@ -36,3 +36,19 @@ def test_contains_function_ball_2d(point, expected):
 def test_volume_boule_unite(center, expected):
     ball_2d_rad5_center1_1 = BallWindow(center, 1)
     assert ball_2d_rad5_center1_1.volume() == expected
+
+
+@pytest.mark.parametrize(
+    "points, expected",
+    [
+        (np.array([1, 1]), True),
+        (np.array([[1, 1]]), True),
+        (np.array([[4, 5], [1, 1], [1, 0]]), True),
+        (np.array([4, 6]), False),
+        (np.array([[1, 1], [10, 3], [1, 1]]), False),
+    ],
+)
+def test_indicator_function_ball_2d(points, expected):
+    ball_2d_rad5_center1_1 = BallWindow((1, 1), 5)
+
+    assert ball_2d_rad5_center1_1.indicator_function(points) == expected
