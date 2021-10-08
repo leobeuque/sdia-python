@@ -16,7 +16,7 @@ Nevertheless, the way was already paved for you
 - [`setup.cfg`](../setup.cfg), [`pyproject.toml`](../pyproject.toml), [`setup.py`](../setup.py) files
 - [`README.md`](../README.md) and [`LICENCE`](../LICENSE) files
 
-However, the project is currently made of the packages `lab1`, `lab2`, ... which can be imported  using `from/import labX ...` (when the sdia-python virtual environment is activated).
+However, the project is currently made of the packages `lab1`, `lab2`, ... which can be imported  using `from/import sdia_python.labX ...` (when the sdia-python virtual environment is activated).
 This may conflict with another course where you may also want to import the corresponding `lab*` files.
 
 - Wouldn't it be clearer to import them using `from/import sdia_python.labX ...` instead?
@@ -85,10 +85,10 @@ See also
 
 4. Update the package imports: the source files have been moved, so that imports must be updated accordingly (`from/import  lab...` -> `from sdia_python.lab...`). From VSCode, you can use `CMD/CTRL + Maj + H` or `CMD/CTRL + Maj + P + Search: Replace in files`, enter the successive "search - replace" pairs in the corresponding cells, remove the current `packaging.md` file from the list and click the "Replace All" button (you might need save the files just modified)
 
-   - from lab - from sdia_python.lab
-   - import lab - import sdia_python.lab
-   - .. automodule:: lab - .. automodule:: sdia_python.lab
-   - src/lab - src/sdia_python/lab
+   - from sdia_python.lab - from sdia_python.lab
+   - import sdia_python.lab - import sdia_python.lab
+   - .. automodule:: sdia_python.lab- .. automodule:: sdia_python.lab
+   - src/sdia_python/lab - src/sdia_python/lab
 
    - Finally, run
 
