@@ -83,9 +83,9 @@ See also
       #################################
       ```
 
-4. Update the package imports: the source files have been moved, so that imports must be updated accordingly (`from/import  lab...` -> `from sdia_python.lab...`). From VSCode, you can use `CMD/CTRL + Maj + H` or `CMD/CTRL + Maj + P + Search: Replace in files`, enter the successive "search - replace" pairs in the corresponding cells, remove the current `packaging.md` file from the list and click the "Replace All" button (you might need save the files just modified)
+4. Update the package imports: the source files have been moved, so that imports must be updated accordingly (`from/import  lab...` -> `from lab...`). From VSCode, you can use `CMD/CTRL + Maj + H` or `CMD/CTRL + Maj + P + Search: Replace in files`, enter the successive "search - replace" pairs in the corresponding cells, remove the current `packaging.md` file from the list and click the "Replace All" button (you might need save the files just modified)
 
-   - from lab - from sdia_python.lab
+   - from lab - from lab
    - import lab - import sdia_python.lab
    - .. automodule:: lab - .. automodule:: sdia_python.lab
    - src/lab - src/sdia_python/lab
