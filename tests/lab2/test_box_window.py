@@ -49,3 +49,41 @@ def test_indicator_function_box_2d(point, expected):
 # ================================
 # ==== WRITE YOUR TESTS BELOW ====
 # ================================
+
+
+@pytest.mark.parametrize(
+    "bounds, expected",
+    [
+        (np.array([[0, 1]]), 1),
+        (np.array([[0, 5], [0, 5]]), 10),
+    ],
+)
+def test_length_box(bounds, expected):
+
+    assert BoxWindow(bounds).__len__() == expected
+
+
+@pytest.mark.parametrize(
+    "bounds, expected",
+    [
+        (np.array([[1, 0]]), 1),
+        (np.array([[0, 5], [0, 5]]), 2),
+        (np.array([[0, 5], [-1, 3], [-10, 10]]), 3),
+    ],
+)
+def test_dimension_box(bounds, expected):
+
+    assert BoxWindow(bounds).dimension() == expected
+
+
+@pytest.mark.parametrize(
+    "bounds, expected",
+    [
+        (np.array([[2.5, 2.5]]), 0),
+        (np.array([[0, 5], [0, 5]]), 25),
+        (np.array([[0, 5], [-1, 3], [-10, 10]]), 400),
+    ],
+)
+def test_volume_box(bounds, expected):
+
+    assert BoxWindow(bounds).volume() == expected
