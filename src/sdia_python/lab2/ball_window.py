@@ -49,19 +49,28 @@ class BallWindow:
             verite_array = np.apply_along_axis(lambda x: x in self, 1, points)
             return np.all(verite_array)
 
-    # def rand(self, rng=None):
-    #     """Generate a point uniformly at random inside the :py:class:`BoxWindow`.
+    def rand(self, rng=None):
+        """Generate a point uniformly at random inside the :py:class:`BoxWindow`.
 
-    #     Args:
-    #         rng ([int], optional): Seed. Defaults to None.
-    #     """
-    #     rng = get_random_number_generator(rng)
-    #     number_list = []
-    #     # * exploit numpy, rng.uniform(a, b, size=n)
-    #     # * consider for a, b in self.bounds
-    #     for bound in self.bounds:
-    #         number_list.append(rng.uniform(bound[0], bound[1]))
-    #     return np.array(number_list)
+        Args:
+            rng ([int], optional): Seed. Defaults to None.
+        """
+        rng = get_random_number_generator(rng)
+        generated_point = (
+            rng.uniform(0, 2 * self.radius, self.dimension()) + self.center
+        )
+        incr = 0
+        while not generated_point in self:
+            generated_point = (
+                rng.uniform(-self.radius, self.radius, self.dimension()) + self.center
+            )
+            incr += 1
+        return generated_point, incr
+
+        # * exploit numpy, rng.uniform(a, b, size=n)
+        # * consider for a, b in self.bounds
+
+        return np.array(number_list)
 
     # def rand_n(self, n=1, rng=None):
     #     """Generate ``n`` points uniformly at random inside the :py:class:`BoxWindow`.
@@ -78,4 +87,4 @@ class BallWindow:
 
 # ball_2d_rad5_center1_1 = BallWindow((1, 1), 5)
 # print((lambda x: x ** 2)(5))
-# print(ball_2d_rad5_center1_1.indicator_function(np.array([[4, 5], [1, 0], [1, 0]])))
+# print(ball_2d_rad5_center1_1.rand())
