@@ -57,7 +57,7 @@ class BallWindow:
         """
         rng = get_random_number_generator(rng)
         generated_point = (
-            rng.uniform(0, 2 * self.radius, self.dimension()) + self.center
+            rng.uniform(-self.radius, self.radius, self.dimension()) + self.center
         )
         incr = 0
         while not generated_point in self:
@@ -65,26 +65,19 @@ class BallWindow:
                 rng.uniform(-self.radius, self.radius, self.dimension()) + self.center
             )
             incr += 1
-        return generated_point, incr
+        return generated_point
 
         # * exploit numpy, rng.uniform(a, b, size=n)
         # * consider for a, b in self.bounds
 
         return np.array(number_list)
 
-    # def rand_n(self, n=1, rng=None):
-    #     """Generate ``n`` points uniformly at random inside the :py:class:`BoxWindow`.
+    def rand_n(self, n, rng=None):
+        """Generate ``n`` points uniformly at random inside the :py:class:`BoxWindow`.
 
-    #     Args:
-    #         n (int, optional): Number of points to generate. Defaults to 1.
-    #         rng ([int], optional): Seed. Defaults to None.
-    #     """
-    #     # * interesting way to decouple rand and rand_n
-    #     # ? why passing a default n=1 argument if not calling self.rand when n=1
-    #     return np.array(self.rand(rng) for i in range(n))
-    #     # ? why returning a list and not an np.array
-
-
-# ball_2d_rad5_center1_1 = BallWindow((1, 1), 5)
-# print((lambda x: x ** 2)(5))
-# print(ball_2d_rad5_center1_1.rand())
+        Args:
+            n (int, optional): Number of points to generate. Defaults to 1.
+            rng ([int], optional): Seed. Defaults to None.
+        """
+        # * interesting way to decouple rand and rand_n
+        return np.array([self.rand() for i in range(n)])

@@ -52,3 +52,23 @@ def test_indicator_function_ball_2d(points, expected):
     ball_2d_rad5_center1_1 = BallWindow((1, 1), 5)
 
     assert ball_2d_rad5_center1_1.indicator_function(points) == expected
+
+
+@pytest.mark.parametrize("n", [1, 5, 20, 100])
+def test_rand_n_in_ball(n):
+    ball_2d_rad5_center1_1 = BallWindow((1, 1), 5)
+    points = ball_2d_rad5_center1_1.rand_n(n, rng=5)
+
+    assert ball_2d_rad5_center1_1.indicator_function(points)
+
+
+@pytest.mark.parametrize("n", [1, 5, 20, 100])
+def test_rand_n_different_generated_points(n):
+    # On teste si les points generes sont bien differents
+    ball_2d_rad5_center1_1 = BallWindow((1, 1), 5)
+    points = ball_2d_rad5_center1_1.rand_n(n)
+
+    assert (
+        points.shape[0]
+        == len(set(points.flatten())) // ball_2d_rad5_center1_1.dimension()
+    )
