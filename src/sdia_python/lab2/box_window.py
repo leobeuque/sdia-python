@@ -22,13 +22,10 @@ class BoxWindow:
         Returns:
             [str]: A description of the given box with its corresponding bounds
         """
-        # ! use f-strings
         bounds_list = []
         if len(self.bounds.shape) == 1:
             return "BoxWindow: " + f"{self.bounds.tolist()}"
 
-        # * consider for i, (a, b) in enumerate(self.bounds)
-        # * use += operator
         A_list = self.bounds.tolist()
         to_print = ""
         for i in range(len(A_list)):
@@ -73,7 +70,6 @@ class BoxWindow:
         Returns:
             [int]: Dimension of the box
         """
-        # * nice use of .shape
         return self.bounds.shape[0]
 
     def volume(self):

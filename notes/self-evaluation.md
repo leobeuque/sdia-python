@@ -14,34 +14,34 @@ Happy reviewing.
 
 ## Your duo
 
-- name1-name2
-- link to repository
+- besnier-beuque
+- [link to repository](https://github.com/tbesnier/sdia-python)
 
-### Code 0/5
+### Code 3.5/5
 
-- Are the `BoxWindow`, `UnitBoxWindow`, `BallWindow`, `UnitBallWindow` defined?
-- Are the methods originally listed, now defined?
-- Are there new methods defined? How are they used?
-- How readable is the code?
-- Are most of the operations "vectorized" using numpy? To which extent?
-- How original is the code?
+- Are the `BoxWindow`, `UnitBoxWindow`, `BallWindow`, `UnitBallWindow` defined? --> Il manque `UnitBoxWindow` et `UnitBallWindow`
+- Are the methods originally listed, now defined? Oui
+- Are there new methods defined? How are they used? 1 seule
+- How readable is the code? Ok, noms de variables explicites + espaces...
+- Are most of the operations "vectorized" using numpy? To which extent? En partie oui
+- How original is the code?...
 
-### Testing - 0/5
+### Testing - 4/5
 
-- Do the tests (all) pass?
-- Are all functions/methods tested?
-- Are the test readable?
-- Are the tests meaningful?
+- Do the tests (all) pass? Oui
+- Are all functions/methods tested? Non, les 2/3 sont testés
+- Are the test readable? Oui
+- Are the tests meaningful? Oui
 
-### Documentation - 0/5
+### Documentation - 4/5
 
-- Does the documentation build?
+- Does the documentation build? Oui
 - Clarity/quality of the docstrings
-  - Syntax
-  - Consistency
-  - Potential examples or doctests are provided
+  - Syntax --> ok
+  - Consistency --> Autant que possible
+  - Potential examples or doctests are provided --> Non
   - ...
-- Does the documentation look nice? (this is more subjective)
+- Does the documentation look nice? (this is more subjective) --> pas de couleurs, d'espaces,...
 
 ### Packaging
 
@@ -55,8 +55,8 @@ See [packaging.md](.packaging.md)
 
 ## Review another duo
 
-- name1-name2
-- link to repository
+- marizy-sarazin
+- [link to repository](https://github.com/AnnaMarizy/sdia-python.git)
 
 0. Commit your last changes
 1. Select an other duo (see the list below)
