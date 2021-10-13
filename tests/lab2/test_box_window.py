@@ -87,3 +87,16 @@ def test_dimension_box(bounds, expected):
 def test_volume_box(bounds, expected):
 
     assert BoxWindow(bounds).volume() == expected
+
+
+@pytest.mark.parametrize(
+    "bounds, expected",
+    [
+        (np.array([[2.5, 2.5]]), np.array([2.5])),
+        (np.array([[1, 5], [1, 5]]), np.array([3.0, 3.0])),
+        (np.array([[0, 2], [-1, 5], [-2, 6]]), np.array([1.0, 2.0, 2.0])),
+    ],
+)
+def test_center_box(bounds, expected):
+
+    assert np.all([BoxWindow(bounds).center_point(), expected])

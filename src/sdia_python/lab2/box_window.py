@@ -124,6 +124,12 @@ class BoxWindow:
         return np.array(self.rand(rng) for i in range(n))
         # ? why returning a list and not an np.array
 
+    def center_point(self):
+        """Return the coordinates of the point that is in the middle of the box"""
+        bounds = self.bounds
+
+        return np.mean(bounds, axis=1)
+
 
 # todo class UnitBoxWindow and BallWindow not defined
 
@@ -137,3 +143,8 @@ class UnitBoxWindow(BoxWindow):
             center ([tuple], optional): The center of the box with respect to the euclidian norm. Defaults to None.
         """
         super(BoxWindow, self).__init__(bounds)
+
+
+test = BoxWindow(np.array([[1, 5], [1, 5]]))
+print(test.center_point())
+assert np.all([np.array([[1, 2], [2, 1]]), np.array([[1, 2], [2, 1]])])
