@@ -125,7 +125,11 @@ class BoxWindow:
         # ? why returning a list and not an np.array
 
     def center_point(self):
-        """Return the coordinates of the point that is in the middle of the box"""
+        """Return the coordinates of the point that is in the middle of the box
+
+        Returns:
+            [array]: Returns coordinates of the center point
+        """
         bounds = self.bounds
 
         return np.mean(bounds, axis=1)
