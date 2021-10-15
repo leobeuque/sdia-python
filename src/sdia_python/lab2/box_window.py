@@ -146,9 +146,12 @@ class UnitBoxWindow(BoxWindow):
             dimension ([int]): [description]
             center ([tuple], optional): The center of the box with respect to the euclidian norm. Defaults to None.
         """
-        super(BoxWindow, self).__init__(bounds)
+        assert len(center) == dimension
+
+        bounds = np.add.outer(center, np.array([-0.5, 0.5]))
+        super(UnitBoxWindow, self).__init__(bounds)
 
 
 test = BoxWindow(np.array([[1, 5], [1, 5]]))
-print(test.center_point())
-assert np.all([np.array([[1, 2], [2, 1]]), np.array([[1, 2], [2, 1]])])
+test = UnitBoxWindow(np.array([1, 5, 3]), 3)
+print(test.bounds)

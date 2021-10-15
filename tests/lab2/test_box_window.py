@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from sdia_python.lab2.box_window import BoxWindow
+from sdia_python.lab2.box_window import BoxWindow, UnitBoxWindow
 
 
 def test_raise_type_error_when_something_is_called():
@@ -96,3 +96,16 @@ def test_volume_box(bounds, expected):
 def test_center_box(bounds, expected):
 
     assert np.all([BoxWindow(bounds).center_point() == expected])
+
+
+@pytest.mark.parametrize(
+    "center, dimension, expected",
+    [
+        (np.array([1, 3]), 2, np.array([[0.5, 1.5], [2.5, 3.5]])),
+        (np.array([1]), 1, np.array([0.5, 1.5])),
+        (np.array([-1.6, 2, 5.2]), 3, np.array([[-2.1, -1.1], [1.5, 2.5], [4.7, 5.7]])),
+    ],
+)
+def test_unit_box(center, dimension, expected):
+
+    assert np.all(UnitBoxWindow(center, dimension).bounds == expected)
