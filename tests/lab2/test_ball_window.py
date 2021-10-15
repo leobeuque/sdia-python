@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from sdia_python.lab2.ball_window import BallWindow
+from sdia_python.lab2.ball_window import BallWindow, UnitBallWindow
 
 
 def test_raise_type_error_when_something_is_called():
@@ -71,4 +71,15 @@ def test_rand_n_different_generated_points(n):
     assert (
         points.shape[0]
         == len(set(points.flatten())) // ball_2d_rad5_center1_1.dimension()
+    )
+
+
+@pytest.mark.parametrize(
+    "center, dimension, expected_radius, expected_center",
+    [(np.array([1, 3]), 2, 1, np.array([1, 3])), (np.array([1]), 1, 1, np.array([1])),],
+)
+def test_unit_box(center, dimension, expected_radius, expected_center):
+    unit_ball = UnitBallWindow(center, dimension)
+    assert unit_ball.radius == expected_radius and np.all(
+        unit_ball.center == expected_center
     )

@@ -81,3 +81,19 @@ class BallWindow:
         """
         # * interesting way to decouple rand and rand_n
         return np.array([self.rand() for i in range(n)])
+
+
+class UnitBallWindow(BallWindow):
+    def __init__(self, center, dimension):
+        """[Description] Create a box
+
+        Args:
+            dimension ([int]): [description]
+            center ([tuple], optional): The center of the box with respect to the euclidian norm. Defaults to None.
+        """
+        assert len(center) == dimension
+        super(UnitBallWindow, self).__init__(center, 1)
+
+
+# test = UnitBallWindow(np.array([1, 5, 3]), 3)
+# print(test.volume())
