@@ -52,11 +52,7 @@ def test_indicator_function_box_2d(point, expected):
 
 
 @pytest.mark.parametrize(
-    "bounds, expected",
-    [
-        (np.array([[0, 1]]), 1),
-        (np.array([[0, 5], [0, 5]]), 10),
-    ],
+    "bounds, expected", [(np.array([[0, 1]]), 1), (np.array([[0, 5], [0, 5]]), 10),],
 )
 def test_length_box(bounds, expected):
 
@@ -99,4 +95,4 @@ def test_volume_box(bounds, expected):
 )
 def test_center_box(bounds, expected):
 
-    assert np.all([BoxWindow(bounds).center_point(), expected])
+    assert np.all([BoxWindow(bounds).center_point() == expected])
